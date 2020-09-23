@@ -1,0 +1,3 @@
+application:
+  logLevel: debug
+  port: 8080

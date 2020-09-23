@@ -1,0 +1,47 @@
+openapi: 3.0.1
+info:
+  version: 1.0.0
+  title: markdown-api
+  description: Markdown API
+  termsOfService: https://github.com/flavien-perier/markdown-api/blob/master/LICENSE
+  contact:
+    email: perier@flavien.io
+  license:
+    name: MIT
+    url: https://github.com/flavien-perier/markdown-api/blob/master/LICENSE
+
+externalDocs:
+  description: Readme
+  url: https://github.com/flavien-perier/markdown-api/blob/master/README.md
+
+servers:
+- url: http://127.0.0.1:8080/
+
+tags:
+- name: Api
+  description: Application
+
+paths:          
+  /ping:
+    get:
+      tags:
+      - Api
+      summary: Simple test function
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                required:
+                - ping
+                properties:
+                  ping:
+                    type: string
+                    enum:
+                    - OK
+        400:
+          description: Bad request
+        401:
+          description: Unauthorized
