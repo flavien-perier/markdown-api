@@ -1,28 +1,26 @@
-# Node Backend Boilerplate
+# Markdown API
 
-## Commands
+API to expose a list of Markdown files with paging.
 
-Install dependencies:
+## Ports
 
-```bash
-npm install
-```
+- 8080: HTTP
 
-Build project:
+## Volumes
 
-```bash
-npm run build
-```
+- /opt/app/documents
 
-Start tests:
+## Docker-compose example
 
-```bash
-docker-compose up -d
-docker logs -f app-test
-```
-
-Start project:
-
-```bash
-npm start
+```yaml
+jupyter:
+  image: flavienperier/markdown-api
+  container_name: jupyter
+  restart: always
+  volumes:
+    - ./documents:/opt/app/documents
+  ports:
+    - 8080:8080
+  environment:
+    JUPYTER_PASSWORD: password
 ```

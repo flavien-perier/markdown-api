@@ -22,26 +22,104 @@ tags:
   description: Application
 
 paths:          
-  /ping:
+  /:
     get:
       tags:
       - Api
-      summary: Simple test function
+      summary: File Search
+      parameters:
+      - name: p
+        in: query
+        required: false
+        description: Page identifier
+        schema:
+          type: number
+      - name: n
+        in: query
+        required: false
+        description: Number of items per page
+        schema:
+          type: number
+      - name: type
+        in: query
+        required: false
+        description: Type of item to be returned
+        schema:
+          $ref: "#/components/schemas/ArticleType"
+      - name: q
+        in: query
+        required: false
+        description: Regex on the name of the article
+        schema:
+          type: string
       responses:
         200:
           description: OK
           content:
             application/json:
               schema:
-                type: object
-                required:
-                - ping
-                properties:
-                  ping:
-                    type: string
-                    enum:
-                    - OK
-        400:
-          description: Bad request
-        401:
-          description: Unauthorized
+                type: array
+                items:
+                  $ref: "#/components/schemas/MarkdownHeader"
+  
+  /file/{fileName}:
+    get:
+      tags:
+      - Api
+      summary: Returns the file in markdown format
+      parameters:
+      - name: fileName
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        200:
+          description: OK
+          content:
+            text/markdown:
+              schema:
+                type: string
+                example: >
+                  # Example of article
+                  
+                  You can visit my site [flavien.io](https://www.flavien.io/)
+        404:
+          description: NotFound
+
+components:
+  schemas:
+    ArticleType:
+      type: string
+      description: Type of article
+      enum:
+      - ARTICLE
+      - BLOG
+      - DOCUMENTATION
+  
+    MarkdownHeader:
+      type: object
+      required:
+      - title
+      - author
+      - date
+      - url
+      properties:
+        title:
+          type: string
+          description: Title of the article
+        type:
+          $ref: "#/components/schemas/ArticleType"
+        description: 
+          type: string
+          description: Description of the article
+        author:
+          type: string
+          description: Author of the article
+        date:
+          type: string
+          description: Date of publication of the article
+          format: date-time
+        url:
+          type: string
+          description: URL of the article

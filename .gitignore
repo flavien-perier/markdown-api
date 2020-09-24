@@ -3,6 +3,5 @@
 .npm
 .ash_history
 dist
-build
 node_modules
 package-lock.json
