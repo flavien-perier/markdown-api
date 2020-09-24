@@ -1,12 +1,11 @@
 import * as express from "express";
-import fileService from "../service/fileService";
+import * as path from "path";
 
 const router = express.Router();
 
 router.get("/:fileName", (req, res) => {
-    res.json({
-        fileName: req.params.fileName
-    });
+    res.setHeader("Content-Type", "text/markdown");
+    res.sendFile(path.join(process.cwd(), "documents", req.params.fileName));
 });
 
 export default router;
