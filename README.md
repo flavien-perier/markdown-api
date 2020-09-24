@@ -33,14 +33,12 @@ The type of the article can be: `ARTICLE`, `BLOG` or `DOCUMENTATION`. The date i
 ## Docker-compose example
 
 ```yaml
-jupyter:
+markdown-api:
   image: flavienperier/markdown-api
-  container_name: jupyter
+  container_name: markdown-api
   restart: always
   volumes:
     - ./documents:/opt/app/documents
   ports:
     - 8080:8080
-  environment:
-    JUPYTER_PASSWORD: password
 ```
