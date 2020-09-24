@@ -3,7 +3,6 @@ import * as path from "path";
 import * as yaml from "js-yaml";
 import MarkdownHeaderDto from "../model/MarkdownHeaderDto";
 import MarkdownHeader from "../model/MarkdownHeader";
-import ArticleType from "../model/ArticleType";
 
 const BASE_PATH = "./documents";
 const HEADER_MATCHER = /^---(.*)---/s
@@ -17,7 +16,7 @@ class SearchService {
                 const fileHeader = yaml.safeLoad(stringHeader) as MarkdownHeader;
                 return {
                     title: fileHeader.title,
-                    type: ArticleType[fileHeader.type],
+                    type: fileHeader.type,
                     description: fileHeader.description,
                     author: fileHeader.author,
                     date: new Date(fileHeader.date),
@@ -26,7 +25,7 @@ class SearchService {
             });
     }
 
-    public filter(pageId: number, itemsPerPage: number, type: ArticleType, query: string, baseHost: string) {
+    public filter(pageId: number, itemsPerPage: number, type: "ARTICLE" | "BLOG" | "DOCUMENTATION", query: string, baseHost: string) {
         return this.getAllHeaders(baseHost)
             .sort(header => header.date.getTime())
             .filter(header => header.type == type ) // Filter by document type

@@ -33,6 +33,12 @@ app.use((req, res, next) => {
     next();
 });
 
+// edit header
+app.use((req, res, next) => {
+    res.header("Access-Control-Allow-Origin", "*");
+    next();
+});
+
 const server: Promise<http.Server> = new OpenApiValidator({
     apiSpec: yaml.safeLoad(fs.readFileSync("swagger.yaml", "utf8")) as any,
     validateRequests: true,
