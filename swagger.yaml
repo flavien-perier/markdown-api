@@ -103,6 +103,7 @@ components:
       - title
       - author
       - date
+      - filename
       - url
       properties:
         title:
@@ -120,6 +121,9 @@ components:
           type: string
           description: Date of publication of the article
           format: date-time
+        filename:
+          type: string
+          description: Name of the article file
         url:
           type: string
           description: URL of the article

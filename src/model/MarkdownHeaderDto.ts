@@ -4,5 +4,6 @@ export default interface MarkdownHeader {
     description: string;
     author: string;
     date: Date;
+    filename: string;
     url: string;
 }

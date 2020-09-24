@@ -20,6 +20,7 @@ class SearchService {
                     description: fileHeader.description,
                     author: fileHeader.author,
                     date: new Date(fileHeader.date),
+                    filename: fileName,
                     url: path.join(baseHost, "files", fileName)
                 } as MarkdownHeaderDto;
             });
