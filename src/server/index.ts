@@ -12,7 +12,8 @@ import HttpError from "../error/HttpError";
 import HttpInternalServerError from "../error/HttpInternalServerError";
 import HttpNotFoundError from "../error/HttpNotFoundError";
 import BadRequestInformations from "../model/BadRequestInformations";
-import ping from "./ping";
+import search from "./search";
+import files from "./files";
 
 const _logger = logger("server");
 const app = express();
@@ -35,11 +36,12 @@ app.use((req, res, next) => {
 const server: Promise<http.Server> = new OpenApiValidator({
     apiSpec: yaml.safeLoad(fs.readFileSync("swagger.yaml", "utf8")) as any,
     validateRequests: true,
-    validateResponses: true,
-    validateSecurity: true
+    validateResponses: false,
+    validateSecurity: false
 }).install(app).then(() => {
     // include rooters
-    app.use("/ping", ping)
+    app.use("/files", files);
+    app.use("/", search);
 
     // default response
     app.use((req, res, next) => {

@@ -49,7 +49,7 @@ paths:
       - name: q
         in: query
         required: false
-        description: Regex on the name of the article
+        description: Regex on the name and the description of the article
         schema:
           type: string
       responses:
@@ -62,7 +62,7 @@ paths:
                 items:
                   $ref: "#/components/schemas/MarkdownHeader"
   
-  /file/{fileName}:
+  /files/{fileName}:
     get:
       tags:
       - Api

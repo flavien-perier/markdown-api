@@ -9,6 +9,7 @@ services:
     restart: always
     volumes:
       - ./src:/opt/app/src
+      - ./documents:/opt/app/documents
       - ./swagger.yaml:/opt/app/swagger.yaml
     ports:
       - 127.0.0.1:8080:8080
@@ -25,6 +26,7 @@ services:
     restart: always
     volumes:
       - ./src:/opt/app/src
+      - ./documents:/opt/app/documents
       - ./swagger.yaml:/opt/app/swagger.yaml
     environment:
       REDIS_URL: redis://:${REDIS_PASSWORD}@redis:6379

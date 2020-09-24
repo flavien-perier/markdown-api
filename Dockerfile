@@ -12,7 +12,7 @@ RUN rm -Rf node_modules && \
     chown -R root:root /opt/app && \
     (npm install) && \
     npm run build && \
-    rm -Rf node_modules && \
+    rm -Rf node_modules documents && \
     npm install --production
 
 FROM node:lts-alpine
@@ -23,12 +23,7 @@ ARG DOCKER_GID=500
 ENV NODE_ENV=production
 
 ENV NODE_ID=
-ENV PORT=8080
 ENV LOG=debug
-ENV SALT=salt
-ENV JWT_TOKEN=jwttoken
-ENV REDIS_URL=redis://:password@redis:6379
-ENV POSTGRES_URL=psql://admin:password@postgres:5432/admin
 
 WORKDIR /opt/app
 
@@ -37,6 +32,8 @@ COPY --from=builder /opt/app .
 RUN addgroup -g $DOCKER_GID app && \
     adduser -G app -D -H -h /opt/app -u $DOCKER_UID app && \
     chown -R app:app /opt/app
+
+VOLUME /opt/app/documents
 
 USER app
 EXPOSE 8080
