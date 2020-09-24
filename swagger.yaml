@@ -121,7 +121,7 @@ components:
           type: string
           description: Date of publication of the article
           format: date-time
-        filename:
+        fileName:
           type: string
           description: Name of the article file
         url:
