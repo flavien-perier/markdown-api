@@ -19,16 +19,16 @@ class SearchService {
                     type: fileHeader.type,
                     description: fileHeader.description,
                     author: fileHeader.author,
-                    date: new Date(fileHeader.date),
+                    date: new Date(fileHeader.date).toISOString(),
                     fileName: fileName,
-                    url: path.join(baseHost, "files", fileName)
+                    url: path.join(baseHost, fileName)
                 } as MarkdownHeaderDto;
             });
     }
 
     public filter(pageId: number, itemsPerPage: number, type: "ARTICLE" | "BLOG" | "DOCUMENTATION", query: string, baseHost: string) {
         return this.getAllHeaders(baseHost)
-            .sort(header => header.date.getTime())
+            .sort(header => new Date(header.date).getTime())
             .filter(header => header.type == type ) // Filter by document type
             .filter(header => {
                 const regex = RegExp(query, "i");

@@ -62,7 +62,7 @@ paths:
                 items:
                   $ref: "#/components/schemas/MarkdownHeader"
   
-  /files/{fileName}:
+  /{fileName}:
     get:
       tags:
       - Api
@@ -103,7 +103,7 @@ components:
       - title
       - author
       - date
-      - filename
+      - fileName
       - url
       properties:
         title:

@@ -42,11 +42,11 @@ app.use((req, res, next) => {
 const server: Promise<http.Server> = new OpenApiValidator({
     apiSpec: yaml.safeLoad(fs.readFileSync("swagger.yaml", "utf8")) as any,
     validateRequests: true,
-    validateResponses: false,
+    validateResponses: true,
     validateSecurity: false
 }).install(app).then(() => {
     // include rooters
-    app.use("/files", files);
+    app.use("/", files);
     app.use("/", search);
 
     // default response

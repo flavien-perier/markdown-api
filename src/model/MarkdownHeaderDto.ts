@@ -3,7 +3,7 @@ export default interface MarkdownHeader {
     type: "ARTICLE" | "BLOG" | "DOCUMENTATION";
     description: string;
     author: string;
-    date: Date;
+    date: string;
     fileName: string;
     url: string;
 }
