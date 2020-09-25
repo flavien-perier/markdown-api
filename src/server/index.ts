@@ -13,7 +13,6 @@ import HttpInternalServerError from "../error/HttpInternalServerError";
 import HttpNotFoundError from "../error/HttpNotFoundError";
 import BadRequestInformations from "../model/BadRequestInformations";
 import search from "./search";
-import files from "./files";
 
 const _logger = logger("server");
 const app = express();
@@ -46,7 +45,7 @@ const server: Promise<http.Server> = new OpenApiValidator({
     validateSecurity: false
 }).install(app).then(() => {
     // include rooters
-    app.use("/", files);
+    app.use(express.static("documents"));
     app.use("/", search);
 
     // default response
