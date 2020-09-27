@@ -31,7 +31,7 @@ class SearchService {
 
     public filter(pageId: number, itemsPerPage: number, type: "ARTICLE" | "BLOG" | "DOCUMENTATION", query: string, baseHost: string) : SearchResultDto {
         const files = this.getAllHeaders(baseHost)
-            .sort(header => new Date(header.date).getTime())
+            .sort((file1, file2) => new Date(file2.date).getTime() - new Date(file1.date).getTime())
             .filter(header => header.type == type ) // Filter by document type
             .filter(header => {
                 const regex = RegExp(query, "i");
