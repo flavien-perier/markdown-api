@@ -44,6 +44,11 @@ paths:
           type: number
           format: int32
           minimum: 1
+      - name: categ
+        in: query
+        description: Searches for items in a particular category
+        schema:
+          type: string
       - name: type
         in: query
         required: false
@@ -128,6 +133,10 @@ components:
           description: Title of the article
         type:
           $ref: "#/components/schemas/ArticleType"
+        categories:
+          type: array
+          items:
+            type: string
         description: 
           type: string
           description: Description of the article

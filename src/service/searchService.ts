@@ -20,6 +20,7 @@ class SearchService {
                 return {
                     title: fileHeader.title,
                     type: fileHeader.type,
+                    categories: fileHeader.categories || [],
                     description: fileHeader.description,
                     author: fileHeader.author,
                     date: new Date(fileHeader.date).toISOString(),
@@ -29,10 +30,11 @@ class SearchService {
             });
     }
 
-    public filter(pageId: number, itemsPerPage: number, type: "ARTICLE" | "BLOG" | "DOCUMENTATION", query: string, baseHost: string) : SearchResultDto {
+    public filter(pageId: number, itemsPerPage: number, type: "ARTICLE" | "BLOG" | "DOCUMENTATION", categ: string, query: string, baseHost: string) : SearchResultDto {
         const files = this.getAllHeaders(baseHost)
             .sort((file1, file2) => new Date(file2.date).getTime() - new Date(file1.date).getTime())
             .filter(header => header.type == type ) // Filter by document type
+            .filter(header => categ == null || header.categories.indexOf(categ) != -1) // Filter by category
             .filter(header => {
                 const regex = RegExp(query, "i");
                 return regex.test(header.title) || regex.test(header.description);

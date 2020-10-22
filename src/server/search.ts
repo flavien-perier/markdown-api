@@ -8,6 +8,7 @@ router.get("/", (req, res) => {
         parseInt(req.query.p as string) || 1,
         parseInt(req.query.n as string) || 10,
         (req.query.type as string || "ARTICLE") as "ARTICLE" | "BLOG" | "DOCUMENTATION",
+        req.query.categ as string,
         req.query.q as string,
         req.headers["host"]
     ));
