@@ -1,3 +1,7 @@
+![license](https://badgen.net/github/license/flavien-perier/markdown-api)
+[![docker pulls](https://badgen.net/docker/pulls/flavienperier/markdown-api)](https://hub.docker.com/r/flavienperier/markdown-api)
+[![ci status](https://badgen.net/github/checks/flavien-perier/markdown-api)](https://github.com/flavien-perier/markdown-api)
+
 # Markdown API
 
 API to expose a list of Markdown files with paging.
