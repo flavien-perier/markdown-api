@@ -6,7 +6,7 @@ import MarkdownHeader from "../model/MarkdownHeader";
 import SearchResultDto from "../model/SearchResultDto";
 
 const BASE_PATH = "./documents";
-const HEADER_MATCHER = /^---(.*)---/s;
+const HEADER_MATCHER = /^---(.*?)---/s;
 const MARKDOWN_FILE_MATCHER = /^.*\.md$/;
 
 class SearchService {
