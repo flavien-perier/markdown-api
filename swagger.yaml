@@ -103,6 +103,7 @@ components:
       - ARTICLE
       - BLOG
       - DOCUMENTATION
+      - WIKI
       
     SearchResult:
       type: object

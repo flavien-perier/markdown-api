@@ -3,12 +3,12 @@ import * as fs from "fs";
 import * as crypto from "crypto";
 
 class Configuration {
-    private _applicationVersion: string;
-    private _nodeId: string;
-    private _logLevel: string;
-    private _port: string;
+    private readonly _applicationVersion: string;
+    private readonly _nodeId: string;
+    private readonly _logLevel: string;
+    private readonly _port: string;
     constructor() {
-        const staticConfiguration: any = yaml.safeLoad(fs.readFileSync("configuration.yaml", "utf8"));
+        const staticConfiguration: any = yaml.load(fs.readFileSync("configuration.yaml", "utf8"));
 
         this._applicationVersion = require("../../package.json").version
         this._nodeId = process.env.NODE_ID || staticConfiguration.application.nodeId || crypto.randomBytes(10).toString("hex");

@@ -16,7 +16,7 @@ class SearchService {
             .map(fileName => {
                 const fileContent = fs.readFileSync(path.join(BASE_PATH, fileName)).toString();
                 const stringHeader = HEADER_MATCHER.exec(fileContent)[1];
-                const fileHeader = yaml.safeLoad(stringHeader) as MarkdownHeader;
+                const fileHeader = yaml.load(stringHeader) as MarkdownHeader;
                 return {
                     title: fileHeader.title,
                     type: fileHeader.type,
@@ -30,7 +30,7 @@ class SearchService {
             });
     }
 
-    public filter(pageId: number, itemsPerPage: number, type: "ARTICLE" | "BLOG" | "DOCUMENTATION", categ: string, query: string, baseHost: string) : SearchResultDto {
+    public filter(pageId: number, itemsPerPage: number, type: "ARTICLE" | "BLOG" | "DOCUMENTATION" | "WIKI", categ: string, query: string, baseHost: string) : SearchResultDto {
         const files = this.getAllHeaders(baseHost)
             .sort((file1, file2) => new Date(file2.date).getTime() - new Date(file1.date).getTime())
             .filter(header => header.type == type ) // Filter by document type
