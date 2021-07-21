@@ -1,9 +1,9 @@
-.idea
+.ash_history
 .cache
 .config
+.idea
 .npm
-.ash_history
-dist
 build
+dist
 node_modules
 package-lock.json

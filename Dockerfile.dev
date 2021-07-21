@@ -1,21 +1,15 @@
 FROM node:lts-alpine as builder
 
-LABEL maintainer="Flavien PERIER <perier@flavien.io>"
-LABEL version="1.0"
-LABEL description="Markdown API dev"
+LABEL maintainer="Flavien PERIER <perier@flavien.io>" \
+      version="1.0.O" \
+      description="Markdown API dev"
 
 WORKDIR /opt/app
-COPY . .
-
-RUN rm -Rf node_modules && \
-    chmod -R 750 /opt/app && \
-    chown -R root:root /opt/app && \
-    (npm install) && \
-    npm run build && \
-    rm -Rf src swagger.yaml
-
 VOLUME /opt/app/documents
 VOLUME /opt/app/src
-VOLUME /opt/app/swagger.yaml
+COPY . .
+
+RUN npm install && \
+    npm run build
 
 EXPOSE 8080
