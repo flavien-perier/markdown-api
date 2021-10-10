@@ -7,7 +7,8 @@ LABEL maintainer="Flavien PERIER <perier@flavien.io>" \
 WORKDIR /opt/app
 VOLUME /opt/app/documents
 VOLUME /opt/app/src
-COPY . .
+
+COPY --chown=root:root . .
 
 RUN npm install && \
     npm run build

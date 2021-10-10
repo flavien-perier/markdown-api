@@ -2,10 +2,12 @@
 .cache
 .config
 .gitignore
+.dockerignore
 .npm
 build
 dist
 Dockerfile
+Dockerfile.dev
 documents
 node_modules
 package-lock.json
