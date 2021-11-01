@@ -42,7 +42,7 @@ class SearchService {
             .filter((header, index) => index >= itemsPerPage * (pageId - 1) && index < itemsPerPage * pageId); // Filter by page
 
         return {
-            pages: Math.round((files.length / itemsPerPage) + 1),
+            pages: Math.trunc((files.length / itemsPerPage) + 1),
             files
         };
     }
