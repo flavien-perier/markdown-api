@@ -1,4 +1,4 @@
-import MarkdownHeaderDto from "./MarkdownHeaderDto";
+import MarkdownHeaderDto from "./markdown-header.dto";
 
 export default interface SearchResult {
     pages: number;

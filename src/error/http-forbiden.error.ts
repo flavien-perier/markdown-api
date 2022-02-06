@@ -1,4 +1,4 @@
-import HttpError from "./HttpError";
+import HttpError from "./http.error";
 
 export default class HttpForbidenError extends HttpError {
     protected get statusCode() {

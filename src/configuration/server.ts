@@ -5,19 +5,19 @@ import * as bodyParser from "body-parser";
 import * as helmet from "helmet";
 import * as yaml from "js-yaml";
 import * as fs from "fs";
-import configuration from "../configuration/configuration";
-import logger from "../configuration/logger";
-import HttpError from "../error/HttpError";
-import HttpInternalServerError from "../error/HttpInternalServerError";
-import HttpNotFoundError from "../error/HttpNotFoundError";
-import BadRequestInformations from "../model/BadRequestInformations";
-import search from "./search";
+import configuration from "./environment";
+import logger from "./logger";
+import HttpError from "../error/http.error";
+import HttpInternalServerError from "../error/http-internal-server.error";
+import HttpNotFoundError from "../error/http-not-found.error";
+import BadRequestNformationsModel from "../model/bad-request-nformations.model";
+import search from "../controller/search.controller";
 
 const _logger = logger("server");
 const app = express();
 
 app.use(bodyParser.json());
-app.use(helmet());
+app.use(helmet.default());
 app.use(compression());
 
 // log request
@@ -59,10 +59,10 @@ app.use((err, req, res, next) => {
         err.apply(res);
     } else if (err.status && err.message && err.errors) {
         _logger.warn("Swagger compliance issue", {error: err.message});
-        res.status(err.status).json(new BadRequestInformations(err.message, err.errors));
+        res.status(err.status).json(new BadRequestNformationsModel(err.message, err.errors));
     } else {
-        _logger.error("Internal server error", {errorMessage: err.message || err});
-        new HttpInternalServerError("Internal server error").apply(res);
+        _logger.error("Internal controller error", {errorMessage: err.message || err});
+        new HttpInternalServerError("Internal controller error").apply(res);
     }
 });
 

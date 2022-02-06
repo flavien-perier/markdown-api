@@ -2,7 +2,7 @@ import * as yaml from "js-yaml";
 import * as fs from "fs";
 import * as crypto from "crypto";
 
-class Configuration {
+class Environment {
     private readonly _applicationVersion: string;
     private readonly _nodeId: string;
     private readonly _logLevel: string;
@@ -33,6 +33,6 @@ class Configuration {
     }
 }
 
-const configuration = new Configuration();
+const configuration = new Environment();
 
 export default configuration;

@@ -1,5 +1,5 @@
 import * as winston from "winston";
-import configuration from "./configuration";
+import configuration from "./environment";
 
 const levels = {
     alert: 0,

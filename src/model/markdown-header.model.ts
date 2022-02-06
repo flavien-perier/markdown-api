@@ -1,4 +1,4 @@
-export default interface MarkdownHeader {
+export default interface MarkdownHeaderModel {
     title: string;
     type: "ARTICLE" | "BLOG" | "DOCUMENTATION" | "WIKI";
     categories: string[];

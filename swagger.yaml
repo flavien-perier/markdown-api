@@ -15,73 +15,73 @@ externalDocs:
   url: https://github.com/flavien-perier/markdown-api/blob/master/README.md
 
 servers:
-- url: http://127.0.0.1:8080/
+  - url: http://127.0.0.1:8080/
 
 tags:
-- name: Api
-  description: Application
+  - name: Api
+    description: Application
 
 paths:
   /:
     get:
       tags:
-      - Api
+        - Api
       summary: File Search
       parameters:
-      - name: p
-        in: query
-        required: false
-        description: Page identifier
-        schema:
-          type: number
-          format: int32
-          minimum: 1
-      - name: n
-        in: query
-        required: false
-        description: Number of items per page
-        schema:
-          type: number
-          format: int32
-          minimum: 1
-      - name: categ
-        in: query
-        description: Searches for items in a particular category
-        schema:
-          type: string
-      - name: type
-        in: query
-        required: false
-        description: Type of item to be returned
-        schema:
-          $ref: "#/components/schemas/ArticleType"
-      - name: q
-        in: query
-        required: false
-        description: Regex on the name and the description of the article
-        schema:
-          type: string
+        - name: p
+          in: query
+          required: false
+          description: Page identifier
+          schema:
+            type: number
+            format: int32
+            minimum: 1
+        - name: n
+          in: query
+          required: false
+          description: Number of items per page
+          schema:
+            type: number
+            format: int32
+            minimum: 1
+        - name: categ
+          in: query
+          description: Searches for items in a particular category
+          schema:
+            type: string
+        - name: type
+          in: query
+          required: false
+          description: Type of item to be returned
+          schema:
+            $ref: "#/components/schemas/ArticleType"
+        - name: q
+          in: query
+          required: false
+          description: Regex on the name and the description of the article
+          schema:
+            type: string
       responses:
-        200:
+        "200":
           description: OK
           content:
             application/json:
               schema:
                 $ref: "#/components/schemas/SearchResult"
-  
+
   /{fileName}:
     get:
       tags:
-      - Api
+        - Api
       summary: Returns the file in markdown format
       parameters:
-      - name: fileName
-        in: path
-        required: true
-        schema:
-          type: string
+        - name: fileName
+          in: path
+          required: true
+          schema:
+            type: string
       responses:
-        200:
+        "200":
           description: OK
           content:
             text/markdown:
@@ -91,7 +91,7 @@ paths:
                   # Example of article
                   
                   You can visit my site [flavien.io](https://www.flavien.io/)
-        404:
+        "404":
           description: NotFound
 
 components:
@@ -100,11 +100,11 @@ components:
       type: string
       description: Type of article
       enum:
-      - ARTICLE
-      - BLOG
-      - DOCUMENTATION
-      - WIKI
-      
+        - ARTICLE
+        - BLOG
+        - DOCUMENTATION
+        - WIKI
+
     SearchResult:
       type: object
       properties:
@@ -116,18 +116,18 @@ components:
           type: array
           items:
             $ref: "#/components/schemas/MarkdownHeader"
-          
-  
+
+
     MarkdownHeader:
       type: object
       required:
-      - title
-      - type
-      - description
-      - author
-      - date
-      - fileName
-      - url
+        - title
+        - type
+        - description
+        - author
+        - date
+        - fileName
+        - url
       properties:
         title:
           type: string
@@ -138,7 +138,7 @@ components:
           type: array
           items:
             type: string
-        description: 
+        description:
           type: string
           description: Description of the article
         author:

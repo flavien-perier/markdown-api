@@ -11,27 +11,27 @@
     "test": "nodemon -e ts,json,yaml,yml,cc --exec 'ts-node node_modules/jasmine/bin/jasmine --config=jasmine.json'"
   },
   "dependencies": {
-    "body-parser": "1.19.0",
+    "body-parser": "1.19.1",
     "compression": "1.7.4",
-    "express": "4.17.1",
-    "express-openapi-validator": "4.13.2",
-    "helmet": "4.6.0",
+    "express": "4.17.2",
+    "express-openapi-validator": "4.13.5",
+    "helmet": "5.0.2",
     "js-yaml": "4.1.0",
-    "logform": "2.3.0",
-    "rxjs": "7.4.0",
-    "winston": "3.3.3"
+    "logform": "2.3.2",
+    "rxjs": "7.5.2",
+    "winston": "3.5.1"
   },
   "devDependencies": {
-    "@types/body-parser": "1.19.1",
+    "@types/body-parser": "1.19.2",
     "@types/express": "4.17.13",
-    "@types/jasmine": "3.10.1",
-    "@types/js-yaml": "4.0.4",
-    "@types/node": "16.11.6",
+    "@types/jasmine": "3.10.3",
+    "@types/js-yaml": "4.0.5",
+    "@types/node": "17.0.15",
     "@types/supertest": "2.0.11",
-    "jasmine": "3.10.0",
-    "nodemon": "2.0.14",
-    "supertest": "6.1.6",
+    "jasmine": "4.0.2",
+    "nodemon": "2.0.15",
+    "supertest": "6.2.2",
     "ts-node": "10.4.0",
-    "typescript": "4.4.4"
+    "typescript": "4.5.5"
   }
 }
