@@ -1,6 +1,6 @@
 import * as fs from "fs";
 import * as path from "path";
-import * as yaml from "js-yaml";
+import * as yaml from "yaml";
 import MarkdownHeaderDto from "../dto/markdown-header.dto";
 import MarkdownHeaderModel from "../model/markdown-header.model";
 import SearchResultDto from "../dto/search-result.dto";
@@ -16,7 +16,7 @@ class SearchService {
             .map(fileName => {
                 const fileContent = fs.readFileSync(path.join(BASE_PATH, fileName)).toString();
                 const stringHeader = HEADER_MATCHER.exec(fileContent)[1];
-                const fileHeader = yaml.load(stringHeader) as MarkdownHeaderModel;
+                const fileHeader = yaml.parse(stringHeader) as MarkdownHeaderModel;
                 return {
                     title: fileHeader.title,
                     type: fileHeader.type,

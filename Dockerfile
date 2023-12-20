@@ -11,7 +11,7 @@ RUN npm install && \
 FROM node:lts-alpine
 
 LABEL maintainer="Flavien PERIER <perier@flavien.io>" \
-      version="1.0.0" \
+      version="1.1.0" \
       description="Markdown API"
 
 ARG DOCKER_UID="500" \

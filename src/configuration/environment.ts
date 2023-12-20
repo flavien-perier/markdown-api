@@ -1,6 +1,6 @@
-import * as yaml from "js-yaml";
 import * as fs from "fs";
 import * as crypto from "crypto";
+import * as yaml from "yaml";
 
 class Environment {
     private readonly _applicationVersion: string;
@@ -8,7 +8,7 @@ class Environment {
     private readonly _logLevel: string;
     private readonly _port: string;
     constructor() {
-        const staticConfiguration: any = yaml.load(fs.readFileSync("configuration.yaml", "utf8"));
+        const staticConfiguration: any = yaml.parse(fs.readFileSync("configuration.yaml", "utf8"));
 
         this._applicationVersion = require("../../package.json").version
         this._nodeId = process.env.NODE_ID || staticConfiguration.application.nodeId || crypto.randomBytes(10).toString("hex");

@@ -1,7 +1,7 @@
 FROM node:lts-alpine as builder
 
 LABEL maintainer="Flavien PERIER <perier@flavien.io>" \
-      version="1.0.O" \
+      version="1.1.O" \
       description="Markdown API dev"
 
 WORKDIR /opt/app

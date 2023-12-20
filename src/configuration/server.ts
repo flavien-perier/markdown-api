@@ -1,10 +1,9 @@
 import * as OpenApiValidator from "express-openapi-validator";
 import * as express from "express";
-import * as compression from "compression";
 import * as bodyParser from "body-parser";
 import * as helmet from "helmet";
-import * as yaml from "js-yaml";
 import * as fs from "fs";
+import * as yaml from "yaml";
 import configuration from "./environment";
 import logger from "./logger";
 import HttpError from "../error/http.error";
@@ -18,7 +17,6 @@ const app = express();
 
 app.use(bodyParser.json());
 app.use(helmet.default());
-app.use(compression());
 
 // log request
 app.use((req, res, next) => {
@@ -38,7 +36,7 @@ app.use((req, res, next) => {
 });
 
 app.use(OpenApiValidator.middleware({
-        apiSpec: yaml.load(fs.readFileSync("swagger.yaml", "utf8")) as any,
+        apiSpec: yaml.parse(fs.readFileSync("swagger.yaml", "utf8")) as any,
         validateRequests: true, // (default)
         validateResponses: true, // false by default
         validateSecurity: false
