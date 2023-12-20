@@ -27,12 +27,12 @@ RUN addgroup -g $DOCKER_GID app && \
     adduser -G app -D -H -h /opt/app -u $DOCKER_UID app && \
     chown -R app:app /opt/app
 
-COPY --from=builder --chown=app:app /opt/app/dist ./dist
-COPY --from=builder --chown=app:app /opt/app/swagger.yaml ./swagger.yaml
-COPY --from=builder --chown=app:app /opt/app/configuration.yaml ./configuration.yaml
+COPY --from=builder --chown=app:app /opt/app/LICENSE ./LICENSE
 COPY --from=builder --chown=app:app /opt/app/package.json ./package.json
 COPY --from=builder --chown=app:app /opt/app/node_modules ./node_modules
-COPY --from=builder --chown=app:app /opt/app/LICENSE ./LICENSE
+COPY --from=builder --chown=app:app /opt/app/swagger.yaml ./swagger.yaml
+COPY --from=builder --chown=app:app /opt/app/dist ./dist
+COPY --from=builder --chown=app:app /opt/app/configuration.yaml ./configuration.yaml
 
 USER app
 
