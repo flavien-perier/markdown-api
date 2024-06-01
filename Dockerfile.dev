@@ -1,8 +1,13 @@
 FROM node:lts-alpine as builder
 
-LABEL maintainer="Flavien PERIER <perier@flavien.io>" \
-      version="1.1.O" \
-      description="Markdown API dev"
+LABEL org.opencontainers.image.title="Markdown API DEV" \
+      org.opencontainers.image.description="Markdown API DEV" \
+      org.opencontainers.image.version="dev" \
+      org.opencontainers.image.vendor="flavien.io" \
+      org.opencontainers.image.maintainer="Flavien PERIER <perier@flavien.io>" \
+      org.opencontainers.image.url="https://github.com/flavien-perier/markdown-api" \
+      org.opencontainers.image.source="https://github.com/flavien-perier/markdown-api" \
+      org.opencontainers.image.licenses="MIT"
 
 WORKDIR /opt/app
 VOLUME /opt/app/documents
@@ -10,7 +15,6 @@ VOLUME /opt/app/src
 
 COPY --chown=root:root . .
 
-RUN npm install && \
-    npm run build
+RUN npm install && npm run build
 
 EXPOSE 8080
