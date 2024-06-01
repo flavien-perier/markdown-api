@@ -1,4 +1,4 @@
-FROM node:lts-alpine as builder
+FROM node:hydrogen-alpine as builder
 
 LABEL org.opencontainers.image.title="Markdown API DEV" \
       org.opencontainers.image.description="Markdown API DEV" \

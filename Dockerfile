@@ -1,4 +1,4 @@
-FROM node:lts-alpine as builder
+FROM node:hydrogen-alpine as builder
 
 WORKDIR /opt/app
 COPY . .
@@ -8,7 +8,7 @@ RUN npm install && \
     rm -Rf node_modules && \
     npm install --production
 
-FROM node:lts-alpine
+FROM node:hydrogen-alpine
 
 LABEL org.opencontainers.image.title="Markdown API" \
       org.opencontainers.image.description="Markdown API" \
@@ -19,8 +19,8 @@ LABEL org.opencontainers.image.title="Markdown API" \
       org.opencontainers.image.source="https://github.com/flavien-perier/markdown-api" \
       org.opencontainers.image.licenses="MIT"
       
-ARG DOCKER_UID="1000" \
-    DOCKER_GID="1000"
+ARG DOCKER_UID="1100" \
+    DOCKER_GID="1100"
 
 ENV NODE_ENV="production" \
     NODE_ID="" \
