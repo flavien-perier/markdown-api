@@ -1,0 +1,20 @@
+[package]
+name = "markdown_api"
+version = "1.0.0"
+edition = "2024"
+
+description = "Markdown API"
+license = "MIT"
+repository = "https://github.com/flavien-perier/markdown-api"
+homepage = "https://github.com/flavien-perier/markdown-api"
+keywords = ["markdown", "api"]
+authors = ["Flavien Perier <perier@flavien.io>"]
+
+[dependencies]
+axum = "0.6"
+tokio = { version = "1", features = ["full"] }
+serde = { version = "1.0", features = ["derive"] }
+serde_yaml = "0.9.34+deprecated"
+tracing = "0.1.41"
+regex = "1.11.1"
+tracing-subscriber = "0.3.19"

@@ -1,4 +1,4 @@
-openapi: 3.0.1
+openapi: 3.0.2
 info:
   version: 1.0.0
   title: markdown-api
@@ -69,13 +69,13 @@ paths:
               schema:
                 $ref: "#/components/schemas/SearchResult"
 
-  /{fileName}:
+  /{filename}:
     get:
       tags:
         - Api
       summary: Returns the file in markdown format
       parameters:
-        - name: fileName
+        - name: filename
           in: path
           required: true
           schema:
@@ -126,7 +126,7 @@ components:
         - description
         - author
         - date
-        - fileName
+        - filename
         - url
       properties:
         title:
@@ -148,7 +148,7 @@ components:
           type: string
           description: Date of publication of the article
           format: date-time
-        fileName:
+        filename:
           type: string
           description: Name of the article file
         url:

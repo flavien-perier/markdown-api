@@ -45,4 +45,6 @@ markdown-api:
     - ./documents:/opt/app/documents
   ports:
     - 8080:8080
+  environment:
+    DOMAIN: https://articles.flavien.cc
 ```

@@ -1,14 +1,4 @@
-.ash_history
-.cache
-.config
-.gitignore
-.dockerignore
-.npm
-build
-dist
-Dockerfile
-Dockerfile.dev
+.git
+target
 documents
-node_modules
-package-lock.json
-README.md
+Dockerfile
