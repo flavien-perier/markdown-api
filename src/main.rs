@@ -1,4 +1,6 @@
+use axum::http::Method;
 use axum::routing::{Router, get};
+use tower_http::cors::{Any, CorsLayer};
 use tracing::log;
 
 mod functions;
@@ -14,14 +16,19 @@ async fn main() {
         .with_max_level(tracing::Level::INFO)
         .init();
 
+    let cors = CorsLayer::new()
+        .allow_origin(Any)
+        .allow_methods([Method::GET]);
+
     let app = Router::new()
         .route("/", get(search_files))
-        .route("/:filename", get(get_markdown_file));
+        .route("/{filename}", get(get_markdown_file))
+        .layer(cors);
 
-    let addr = std::net::SocketAddr::from(([0, 0, 0, 0], 8080));
+    let addr = "0.0.0.0:8080".to_string();
+
+    let listener = tokio::net::TcpListener::bind(&addr).await.unwrap();
     log::info!("Listening on {}", addr);
-    axum::Server::bind(&addr)
-        .serve(app.into_make_service())
-        .await
-        .unwrap();
+
+    axum::serve(listener, app).await.unwrap();
 }
