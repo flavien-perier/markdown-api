@@ -17,16 +17,4 @@ jobs:
     - name: Login to DockerHub Registry
       run: echo '${{ secrets.DOCKERHUB_PASSWORD }}' | docker login -u ${{ secrets.DOCKERHUB_USERNAME }} --password-stdin
     - name: Build the tagged Docker image
-      run: docker buildx build --push --tag flavienperier/markdown-api:commit-$GITHUB_SHA --platform linux/amd64,linux/arm64/v8 .
-
-  build-latest:
-    runs-on: ubuntu-latest
-    steps:
-    - uses: actions/checkout@v2
-    - name: install buildx
-      id: buildx
-      uses: crazy-max/ghaction-docker-buildx@v1
-    - name: Login to DockerHub Registry
-      run: echo '${{ secrets.DOCKERHUB_PASSWORD }}' | docker login -u ${{ secrets.DOCKERHUB_USERNAME }} --password-stdin
-    - name: Build the latest Docker image
-      run: docker buildx build --push --tag flavienperier/markdown-api:latest --platform linux/amd64,linux/arm64/v8 .
+      run: docker buildx build --push --tag flavienperier/markdown-api:commit-$GITHUB_SHA --tag flavienperier/markdown-api:latest --platform linux/amd64,linux/arm64/v8 .
