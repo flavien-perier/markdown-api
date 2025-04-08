@@ -3,9 +3,10 @@ use axum::routing::{Router, get};
 use tower_http::cors::{Any, CorsLayer};
 use tracing::log;
 
-mod functions;
 mod model;
 mod routes;
+mod functions;
+mod parser;
 
 use crate::routes::get_markdown_file::get_markdown_file;
 use crate::routes::search_files::search_files;

@@ -6,7 +6,7 @@
 
 API to expose a list of Markdown files with paging.
 
-You can use the [Swagger UI](https://swagger.io/tools/swagger-ui/) tool to view the API documentation available at `https://raw.githubusercontent.com/flavien-perier/markdown-api/master/swagger.yaml`.
+You can use the [Swagger UI](https://swagger.io/tools/swagger-ui/) tool to view the API documentation available at `https://raw.githubusercontent.com/flavien-perier/markdown-api/master/openapi.yaml`.
 
 To use this application, simply add Markdown files to the `documents` folder and add a header to them.
 
@@ -17,6 +17,8 @@ Here is an example of file :
 title: Test
 type: ARTICLE
 description: Test article
+categories: 
+  - dev
 author: Flavien PERIER <perier@flavien.io>
 date: 2020-09-24 13:06
 ---
@@ -33,6 +35,10 @@ The type of the article can be: `ARTICLE`, `BLOG` or `DOCUMENTATION`. The date i
 ## Volumes
 
 - /opt/app/documents
+
+## Env variables
+
+- DOMAIN: The server domain.
 
 ## Docker-compose example
 

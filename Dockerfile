@@ -1,11 +1,12 @@
-FROM rust as builder
+FROM rust:alpine as builder
 
 WORKDIR /opt/app
 COPY . .
 
-RUN cargo build --release
+RUN apk add --no-cache musl-dev && \
+    cargo build --release
 
-FROM debian:bookworm-slim
+FROM alpine:latest
 
 LABEL org.opencontainers.image.title="Markdown API" \
       org.opencontainers.image.description="Markdown API" \
@@ -21,8 +22,8 @@ ARG DOCKER_UID="1000" \
 
 WORKDIR /opt/app
 
-RUN groupadd -g $DOCKER_GID app && \
-    useradd -g app -M -d /opt/app -u $DOCKER_UID app && \
+RUN addgroup -g $DOCKER_GID app && \
+    adduser -G app -D -H -s /bin/sh -u $DOCKER_UID app && \
     chown -R app:app /opt/app
 
 ENV DOMAIN="http://localhost:8080"

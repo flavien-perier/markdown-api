@@ -34,7 +34,7 @@ pub fn extract_header(content: &str, filename: String, url: String) -> Option<Ma
                 Some(header)
             }
             Err(err) => {
-                log::error!("Failed to parse YAML metadata: {}", err);
+                log::error!("In document {} failed to parse YAML metadata : {}", filename, err);
                 None
             }
         }
@@ -58,8 +58,6 @@ pub async fn search_files(Query(params): Query<QueryParams>) -> Json<SearchResul
             files: vec![],
         });
     }
-
-    let mut files = vec![];
 
     let mut read_dir = tokio::fs::read_dir(&dir_path).await.unwrap();
 
@@ -100,7 +98,10 @@ pub async fn search_files(Query(params): Query<QueryParams>) -> Json<SearchResul
 
     let start = (p - 1) * n;
     let paginated_files: Vec<_> = all_files.into_iter().skip(start).take(n).collect();
+
+    let mut files = vec![];
     files.extend(paginated_files);
+    files.sort_by(|a, b| b.date.cmp(&a.date));
 
     let result = SearchResult {
         pages: files.len() as i32,

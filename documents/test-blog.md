@@ -6,7 +6,7 @@ categories:
   - vlog
   - dev
 author: Flavien PERIER <perier@flavien.io>
-date: 2020-09-24 13:06
+date: 2021-09-24 13:06:12
 ---
 
 The content of the blog
