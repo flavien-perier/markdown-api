@@ -97,14 +97,14 @@ pub async fn search_files(Query(params): Query<QueryParams>) -> Json<SearchResul
     }
 
     let start = (p - 1) * n;
-    let paginated_files: Vec<_> = all_files.into_iter().skip(start).take(n).collect();
+    let paginated_files: Vec<_> = all_files.clone().into_iter().skip(start).take(n).collect();
 
     let mut files = vec![];
     files.extend(paginated_files);
     files.sort_by(|a, b| b.date.cmp(&a.date));
 
     let result = SearchResult {
-        pages: files.len() as i32,
+        pages: (all_files.len() + n - 1) / n,
         files,
     };
 
