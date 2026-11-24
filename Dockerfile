@@ -1,4 +1,4 @@
-FROM rust:alpine as builder
+FROM rust:alpine AS builder
 
 WORKDIR /opt/app
 COPY . .
@@ -36,4 +36,4 @@ EXPOSE 8080
 
 COPY --from=builder --chown=app:app /opt/app/target/release/markdown_api ./markdown_api
 
-CMD ./markdown_api
+CMD ["./markdown_api"]

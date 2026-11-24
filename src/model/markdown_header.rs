@@ -1,6 +1,6 @@
 use crate::model::article_type::ArticleType;
 use serde::{Deserialize, Serialize};
-use chrono::{DateTime, Utc};
+use jiff::civil::DateTime;
 use crate::parser::date_parser;
 
 #[derive(Serialize, Deserialize, Clone)]
@@ -13,7 +13,7 @@ pub struct MarkdownHeader {
     pub description: String,
     pub author: String,
     #[serde(with = "date_parser")]
-    pub date: DateTime<Utc>,
+    pub date: DateTime,
     #[serde(skip_serializing_if = "Option::is_none")]
     pub filename: Option<String>,
     #[serde(skip_serializing_if = "Option::is_none")]
